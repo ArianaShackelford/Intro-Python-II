@@ -35,13 +35,54 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-#
-def location():
-    print()
+welcome_message = "Welcome traveler."
+quit_message = "Safe travels!"
+rules = "To move North, press n \n To move East, press e \n To move South, press \n To move West, press w \n To quit the game press q"
+
+def name_player(name):
+    print("Name yourself:")
+    Player(input(name), current_room)
+
+valid_directions = {
+    'n': room.[player.current_room].n_to,
+    's': room.[player.current_room].s_to,
+    'e': room.[player.current_room].e_to,
+    'w': room.[player.current_room].w_to
+}
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player('outside')
+player = Player(player.name, player.current_room)
+# print(f'{player1.name} is in the {player1.current_room} room.')
+print(player.show_room())
 # Write a loop that:
-#
+
+# While not q do this:
+
+#    ⬇️ while what is true??
+while true:
+    cmd = input()
+    valid_directions = ('n', 's', 'e', 'w')
+
+    if cmd == 'q':
+        break
+    if cmd == 'w':
+        if player.current_room.directions != None:
+            player.move(directions)
+        else:
+            print('Cannot move in that direction')
+else:
+    print("Thanks for playing!")
+
+
+
+    # elif cmd in player.valid_directions:
+    #     player.move 
+    # else:
+    #     print("There is nothing that direction")
+        
+    
+
+print(f'{player.name} is in {player.current_room}. {player.current_room.description} ')
+
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
