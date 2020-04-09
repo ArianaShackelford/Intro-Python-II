@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -36,9 +36,14 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+def blocked():
+    print("Nothing to see here!")
+
+def player_update():
+    print(f'Before you lays the {player.location.name}. {player.location.description} ')
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player('Traveler', room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +54,46 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# print(player.location)
+
+while True:
+    cmd = input()
+    location = player.location
+
+    if cmd == 'q':
+        print('Safe travels!')
+        break
+
+    if cmd == 'n' and player.location != None:
+        player.location = location.n_to
+        print('You moved north:')
+        player_update() 
+    elif player.location == None:
+        blocked()
+
+    if cmd == 's'and player.location != None:
+        player.location = player.location.s_to
+        print('You moved south:')
+        player_update()
+
+    elif player.location == None:
+        blocked()    
+
+    if cmd == 'e'and player.location != None:
+        player.location = player.location.e_to
+        print('You moved east:')
+        player_update()
+
+    elif player.location == None:
+        blocked()
+
+    if cmd == 'w'and player.location != None:
+        player.location = player.location.w_to
+        print('You moved west:')
+        player_update()
+
+    elif player.location == None:
+        blocked()
+
+
